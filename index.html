@@ -6,11 +6,39 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Calculator</title>
 		<link rel="stylesheet" href="style.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:ital,wght@0,400;0,700;0,900;1,300;1,400&display=swap"
+			rel="stylesheet"
+		/>
 		<script src="index.js" defer></script>
 	</head>
 	<body>
 		<div class="container">
-			<div id="calculator"></div>
+			<div id="calculator">
+				<div id="display"><span id="display-main">0123456789</span></div>
+				<button class="calculator-button number" id="1">1</button>
+				<button class="calculator-button number" id="2">2</button>
+				<button class="calculator-button number" id="3">3</button>
+				<button class="calculator-button operator" id="add">&plus;</button>
+				<button class="calculator-button number" id="4">4</button>
+				<button class="calculator-button number" id="5">5</button>
+				<button class="calculator-button number" id="6">6</button>
+				<button class="calculator-button operator" id="subtract">
+					&minus;
+				</button>
+				<button class="calculator-button number" id="7">7</button>
+				<button class="calculator-button number" id="8">8</button>
+				<button class="calculator-button number" id="9">9</button>
+				<button class="calculator-button operator" id="multiply">
+					&times;
+				</button>
+				<button class="calculator-button number" id="clear">C</button>
+				<button class="calculator-button number" id="0">0</button>
+				<button class="calculator-button operator" id="divide">&divide;</button>
+				<button class="calculator-button operator" id="equals">&equals;</button>
+			</div>
 		</div>
 	</body>
 </html>
