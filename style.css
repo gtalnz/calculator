@@ -36,6 +36,7 @@ body {
 	padding: 0 20px;
 	font-size: x-large;
 	letter-spacing: 2px;
+	overflow: hidden;
 }
 
 .calculator-button {
@@ -46,6 +47,7 @@ body {
 	border-radius: 10px;
 	border: none;
 	box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.6);
+	cursor: pointer;
 }
 
 #clear {
