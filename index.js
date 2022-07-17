@@ -6,6 +6,7 @@ const { $ADD, $SUBTRACT, $MULTIPLY, $DIVIDE, $EQUALS, $CLEAR } = {
 	$EQUALS: 'equals',
 	$CLEAR: 'clear',
 }
+const display = document.getElementById('display')
 
 let displayValue = ''
 let firstValue = null
@@ -69,6 +70,7 @@ const handleButtonClick = (e) => {
 const handleNumberButton = (numberString) => {
 	displayValue = displayValue + numberString
 	updateDisplay()
+	secondValue = parseInt(display.innerText.trim())
 }
 
 const handleOperatorButton = (operator) => {
@@ -76,26 +78,40 @@ const handleOperatorButton = (operator) => {
 		firstValue = null
 		secondValue = null
 		selectedOperator = null
-		clear()
+		clearDisplay()
 		return
 	}
-	if (operator == $EQUALS) {
-		handleEquals()
-		return
+
+	/*
+		If operator is equals && firstValue exists, then process equals
+		If operator is equals && firstValue does not exist, do nothing
+		If operator is not equals && firstValue exists, process equals
+		If operator is not equals && firstValue does not exist, do not process equals
+		Always set firstValue to the displayValue and reset secondValue
+		set selectedOperator to operator if it's not equals
+	*/
+	if (firstValue && selectedOperator) {
+		secondValue = secondValue || parseInt(display.innerText.trim())
+		let result = operate(selectedOperator, firstValue, secondValue)
+		displayValue = ''
+		firstValue = result
+		updateDisplay()
 	}
-	firstValue = parseInt(displayValue)
-	selectedOperator = operator
-	secondValue = null
-	clear()
+	if (operator != $EQUALS) {
+		selectedOperator = operator
+	}
+	firstValue = firstValue || parseInt(displayValue)
+	clearDisplay()
+	// secondValue = null
 }
 
-const clear = () => {
+const clearDisplay = () => {
 	displayValue = ''
 	updateDisplay()
 }
 
 const updateDisplay = () => {
-	document.getElementById('display').innerText = displayValue
+	display.innerText = displayValue || firstValue
 }
 
 document.querySelectorAll('.calculator-button').forEach((button) => {
@@ -103,10 +119,8 @@ document.querySelectorAll('.calculator-button').forEach((button) => {
 })
 
 const handleEquals = () => {
-	secondValue =
-		secondValue || parseInt(document.getElementById('display').innerText.trim())
+	secondValue = secondValue || parseInt(display.innerText.trim())
 	let result = operate(selectedOperator, firstValue, secondValue)
 	displayValue = result
 	updateDisplay()
-	firstValue = result
 }
